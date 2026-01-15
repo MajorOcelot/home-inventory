@@ -249,7 +249,5 @@ namespace HomeInventory
             LoadSQLiteData();
         }
         #endregion
-
-
     }
 }
