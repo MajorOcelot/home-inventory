@@ -20,6 +20,29 @@ namespace HomeInventory
             LoadSQLiteData();
         }
 
+        #region Click Events
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddItem();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Load SQLite Data
         private void LoadSQLiteData()
         {
             string connectionString = "Data Source=home_inventory.db;Version=3;";
@@ -46,7 +69,9 @@ namespace HomeInventory
                 MessageBox.Show("There was an error loading the database file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
 
+        #region Add Item
         public void AddItem()
         {
             string connectionString = "Data Source=home_inventory.db;Version=3;";
@@ -60,8 +85,8 @@ namespace HomeInventory
                     databaseConnection.Open();
                     using (SQLiteCommand command = new SQLiteCommand(sqlInsert, databaseConnection))
                     {
-                        command.Parameters.AddWithValue("@ItemName", "New Item");
-                        command.Parameters.AddWithValue("@Quantity", 1);
+                        command.Parameters.AddWithValue("@ItemName", txtItemName.Text);
+                        command.Parameters.AddWithValue("@Quantity", Convert.ToInt32(txtItemQuantity.Text));
                         command.ExecuteNonQuery();
                     }
                 }
@@ -72,10 +97,85 @@ namespace HomeInventory
                 MessageBox.Show("There was an error adding the item to the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        #region Update Item
+        public void UpdateItem()
         {
-            AddItem();
+            string connectionString = "Data Source=home_inventory.db;Version=3;";
+            string sqlUpdate = "UPDATE HomeInventory SET Item_Name = @ItemName, Quantity = @Quantity WHERE Item_ID = @ItemId";
+            
+            try
+            {
+                using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
+                {
+                    databaseConnection.Open();
+                    
+                    using (SQLiteCommand command = new SQLiteCommand(sqlUpdate, databaseConnection))
+                    {
+                        command.Parameters.AddWithValue("@ItemId", Convert.ToInt32(txtItemID.Text));
+                        command.Parameters.AddWithValue("@ItemName", txtItemName.Text);
+                        command.Parameters.AddWithValue("@Quantity", txtItemQuantity.Text);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                LoadSQLiteData();
+            }
+            catch
+            {
+                MessageBox.Show("There was an error updating the item in the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+        #endregion
+
+        #region Delete Item
+        public void DeleteItem()
+        {
+            string connectionString = "Data Source=home_inventory.db;Version=3;";
+            string sqlDelete = "DELETE FROM HomeInventory WHERE Item_ID = @ItemId";
+            try
+            {
+                using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
+                {
+                    databaseConnection.Open();
+                    using (SQLiteCommand command = new SQLiteCommand(sqlDelete, databaseConnection))
+                    {
+                        command.Parameters.AddWithValue("@ItemId", Convert.ToInt32(txtItemID.Text));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                LoadSQLiteData();
+            }
+            catch
+            {
+                MessageBox.Show("There was an error deleting the item from the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region Shopping List
+        private void ShoppingListExport()
+        {
+            string connectionString = "Data Source=home_inventory.db;Version=3;";
+            string sqlZeroQuantity = "SELECT FROM HomeInventory WHERE Quantity = 0;";
+
+            try
+            {
+                using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
+                {
+                    databaseConnection.Open();
+
+                    using (SQLiteCommand deleteCommand = new SQLiteCommand(sqlZeroQuantity, databaseConnection))
+                    {
+                        deleteCommand.Parameters.AddWithValue("@Quantity", 0);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+        #endregion
     }
 }
