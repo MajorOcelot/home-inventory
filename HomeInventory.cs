@@ -40,14 +40,19 @@ namespace HomeInventory
         {
             DeleteItem();
         }
+
+        private void btnSaveShoppingList_Click(object sender, EventArgs e)
+        {
+            ShoppingListExport();
+        }
         #endregion
 
         #region Data Cell Changed
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtItemID.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txtItemName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtItemQuantity.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtItemID.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtItemName.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtItemQuantity.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
         #endregion
 
@@ -68,8 +73,8 @@ namespace HomeInventory
                     {
                         DataTable dataTable = new DataTable();
                         dataAdapter.Fill(dataTable);
-
-                        dataGridView1.DataSource = dataTable;
+                        DataView dataView = new DataView(dataTable);
+                        dgvHomeInventory.DataSource = dataTable;
                     }
                 }
             }
@@ -176,7 +181,7 @@ namespace HomeInventory
 
                     using (SQLiteCommand deleteCommand = new SQLiteCommand(sqlZeroQuantity, databaseConnection))
                     {
-                        deleteCommand.Parameters.AddWithValue("@Quantity", 0);
+
                     }
                 }
             }

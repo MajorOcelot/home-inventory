@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeInventory));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvHomeInventory = new System.Windows.Forms.DataGridView();
             this.lblQItemID = new System.Windows.Forms.Label();
             this.txtItemID = new System.Windows.Forms.TextBox();
             this.gbxItemInfo = new System.Windows.Forms.GroupBox();
@@ -48,21 +48,21 @@
             this.btnSaveShoppingList = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnReset = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHomeInventory)).BeginInit();
             this.gbxItemInfo.SuspendLayout();
             this.gbxDatabase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvHomeInventory
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 12);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(776, 301);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvHomeInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHomeInventory.Location = new System.Drawing.Point(13, 12);
+            this.dgvHomeInventory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvHomeInventory.Name = "dgvHomeInventory";
+            this.dgvHomeInventory.Size = new System.Drawing.Size(776, 301);
+            this.dgvHomeInventory.TabIndex = 0;
+            this.dgvHomeInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // lblQItemID
             // 
@@ -220,6 +220,7 @@
             this.btnSaveShoppingList.TabIndex = 0;
             this.btnSaveShoppingList.Text = "Save Shopping List";
             this.btnSaveShoppingList.UseVisualStyleBackColor = true;
+            this.btnSaveShoppingList.Click += new System.EventHandler(this.btnSaveShoppingList_Click);
             // 
             // pictureBox1
             // 
@@ -251,13 +252,13 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.gbxDatabase);
             this.Controls.Add(this.gbxItemInfo);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvHomeInventory);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "HomeInventory";
             this.Text = "Home Inventory";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHomeInventory)).EndInit();
             this.gbxItemInfo.ResumeLayout(false);
             this.gbxItemInfo.PerformLayout();
             this.gbxDatabase.ResumeLayout(false);
@@ -268,7 +269,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvHomeInventory;
         private System.Windows.Forms.Label lblQItemID;
         private System.Windows.Forms.TextBox txtItemID;
         private System.Windows.Forms.GroupBox gbxItemInfo;
