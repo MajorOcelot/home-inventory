@@ -28,17 +28,26 @@ namespace HomeInventory
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            UpdateItem();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnReset_Click(object sender, EventArgs e)
         {
-
+            ResetFields();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            DeleteItem();
+        }
+        #endregion
 
+        #region Data Cell Changed
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtItemID.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtItemName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtItemQuantity.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
         #endregion
 
@@ -175,6 +184,15 @@ namespace HomeInventory
             {
 
             }
+        }
+        #endregion
+
+        #region Reset Fields
+        private void ResetFields()
+        {
+            txtItemID.Clear();
+            txtItemName.Clear();
+            txtItemQuantity.Clear();
         }
         #endregion
     }

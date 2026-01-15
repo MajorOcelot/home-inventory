@@ -36,7 +36,6 @@
             this.lblOutRowSuccess = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtItemQuantity = new System.Windows.Forms.TextBox();
             this.lblQItemQuantity = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@
             this.btnCSVExport = new System.Windows.Forms.Button();
             this.btnSaveShoppingList = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbxItemInfo.SuspendLayout();
             this.gbxDatabase.SuspendLayout();
@@ -60,8 +60,9 @@
             this.dataGridView1.Location = new System.Drawing.Point(13, 12);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(404, 495);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 301);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // lblQItemID
             // 
@@ -77,15 +78,16 @@
             // 
             this.txtItemID.Location = new System.Drawing.Point(84, 20);
             this.txtItemID.Name = "txtItemID";
+            this.txtItemID.ReadOnly = true;
             this.txtItemID.Size = new System.Drawing.Size(56, 21);
             this.txtItemID.TabIndex = 2;
             // 
             // gbxItemInfo
             // 
+            this.gbxItemInfo.Controls.Add(this.btnReset);
             this.gbxItemInfo.Controls.Add(this.lblOutRowSuccess);
             this.gbxItemInfo.Controls.Add(this.btnDelete);
             this.gbxItemInfo.Controls.Add(this.btnUpdate);
-            this.gbxItemInfo.Controls.Add(this.btnSave);
             this.gbxItemInfo.Controls.Add(this.btnAdd);
             this.gbxItemInfo.Controls.Add(this.txtItemQuantity);
             this.gbxItemInfo.Controls.Add(this.lblQItemQuantity);
@@ -93,7 +95,7 @@
             this.gbxItemInfo.Controls.Add(this.txtItemName);
             this.gbxItemInfo.Controls.Add(this.txtItemID);
             this.gbxItemInfo.Controls.Add(this.lblQItemID);
-            this.gbxItemInfo.Location = new System.Drawing.Point(424, 12);
+            this.gbxItemInfo.Location = new System.Drawing.Point(13, 319);
             this.gbxItemInfo.Name = "gbxItemInfo";
             this.gbxItemInfo.Size = new System.Drawing.Size(201, 205);
             this.gbxItemInfo.TabIndex = 3;
@@ -127,16 +129,6 @@
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(104, 147);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(91, 23);
-            this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAdd
             // 
@@ -186,9 +178,9 @@
             this.gbxDatabase.Controls.Add(this.btnJSONExport);
             this.gbxDatabase.Controls.Add(this.btnCSVExport);
             this.gbxDatabase.Controls.Add(this.btnSaveShoppingList);
-            this.gbxDatabase.Location = new System.Drawing.Point(425, 223);
+            this.gbxDatabase.Location = new System.Drawing.Point(220, 319);
             this.gbxDatabase.Name = "gbxDatabase";
-            this.gbxDatabase.Size = new System.Drawing.Size(200, 142);
+            this.gbxDatabase.Size = new System.Drawing.Size(200, 205);
             this.gbxDatabase.TabIndex = 4;
             this.gbxDatabase.TabStop = false;
             this.gbxDatabase.Text = "Export";
@@ -199,7 +191,7 @@
             this.btnExportPDF.Name = "btnExportPDF";
             this.btnExportPDF.Size = new System.Drawing.Size(188, 23);
             this.btnExportPDF.TabIndex = 3;
-            this.btnExportPDF.Text = "PDF Export";
+            this.btnExportPDF.Text = "PDF Export (In Development)";
             this.btnExportPDF.UseVisualStyleBackColor = true;
             // 
             // btnJSONExport
@@ -208,7 +200,7 @@
             this.btnJSONExport.Name = "btnJSONExport";
             this.btnJSONExport.Size = new System.Drawing.Size(188, 23);
             this.btnJSONExport.TabIndex = 2;
-            this.btnJSONExport.Text = "JSON Export";
+            this.btnJSONExport.Text = "JSON Export (In Development)";
             this.btnJSONExport.UseVisualStyleBackColor = true;
             // 
             // btnCSVExport
@@ -217,7 +209,7 @@
             this.btnCSVExport.Name = "btnCSVExport";
             this.btnCSVExport.Size = new System.Drawing.Size(188, 23);
             this.btnCSVExport.TabIndex = 1;
-            this.btnCSVExport.Text = "CSV Export";
+            this.btnCSVExport.Text = "CSV Export (In Development)";
             this.btnCSVExport.UseVisualStyleBackColor = true;
             // 
             // btnSaveShoppingList
@@ -232,12 +224,22 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(425, 372);
+            this.pictureBox1.Location = new System.Drawing.Point(426, 319);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 135);
+            this.pictureBox1.Size = new System.Drawing.Size(363, 205);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(104, 147);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(91, 23);
+            this.btnReset.TabIndex = 12;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // HomeInventory
             // 
@@ -245,7 +247,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(637, 519);
+            this.ClientSize = new System.Drawing.Size(801, 533);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.gbxDatabase);
             this.Controls.Add(this.gbxItemInfo);
@@ -278,13 +280,13 @@
         private System.Windows.Forms.Label lblOutRowSuccess;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnJSONExport;
         private System.Windows.Forms.Button btnCSVExport;
         private System.Windows.Forms.Button btnSaveShoppingList;
         private System.Windows.Forms.Button btnExportPDF;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 
