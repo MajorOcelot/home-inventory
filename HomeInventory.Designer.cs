@@ -33,6 +33,7 @@
             this.lblQItemID = new System.Windows.Forms.Label();
             this.txtItemID = new System.Windows.Forms.TextBox();
             this.gbxItemInfo = new System.Windows.Forms.GroupBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.lblOutRowSuccess = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -47,11 +48,13 @@
             this.btnCSVExport = new System.Windows.Forms.Button();
             this.btnSaveShoppingList = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.gbxSorting = new System.Windows.Forms.GroupBox();
+            this.btnShowEmpties = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHomeInventory)).BeginInit();
             this.gbxItemInfo.SuspendLayout();
             this.gbxDatabase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.gbxSorting.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvHomeInventory
@@ -76,6 +79,7 @@
             // 
             // txtItemID
             // 
+            this.txtItemID.Enabled = false;
             this.txtItemID.Location = new System.Drawing.Point(84, 20);
             this.txtItemID.Name = "txtItemID";
             this.txtItemID.ReadOnly = true;
@@ -101,6 +105,16 @@
             this.gbxItemInfo.TabIndex = 3;
             this.gbxItemInfo.TabStop = false;
             this.gbxItemInfo.Text = "Item Information";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(104, 147);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(91, 23);
+            this.btnReset.TabIndex = 12;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // lblOutRowSuccess
             // 
@@ -178,7 +192,7 @@
             this.gbxDatabase.Controls.Add(this.btnJSONExport);
             this.gbxDatabase.Controls.Add(this.btnCSVExport);
             this.gbxDatabase.Controls.Add(this.btnSaveShoppingList);
-            this.gbxDatabase.Location = new System.Drawing.Point(220, 319);
+            this.gbxDatabase.Location = new System.Drawing.Point(397, 319);
             this.gbxDatabase.Name = "gbxDatabase";
             this.gbxDatabase.Size = new System.Drawing.Size(200, 205);
             this.gbxDatabase.TabIndex = 4;
@@ -225,22 +239,32 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(426, 319);
+            this.pictureBox1.Location = new System.Drawing.Point(603, 319);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(363, 205);
+            this.pictureBox1.Size = new System.Drawing.Size(186, 205);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // btnReset
+            // gbxSorting
             // 
-            this.btnReset.Location = new System.Drawing.Point(104, 147);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(91, 23);
-            this.btnReset.TabIndex = 12;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.gbxSorting.Controls.Add(this.btnShowEmpties);
+            this.gbxSorting.Location = new System.Drawing.Point(221, 319);
+            this.gbxSorting.Name = "gbxSorting";
+            this.gbxSorting.Size = new System.Drawing.Size(170, 205);
+            this.gbxSorting.TabIndex = 6;
+            this.gbxSorting.TabStop = false;
+            this.gbxSorting.Text = "Sorting";
+            // 
+            // btnShowEmpties
+            // 
+            this.btnShowEmpties.Location = new System.Drawing.Point(6, 20);
+            this.btnShowEmpties.Name = "btnShowEmpties";
+            this.btnShowEmpties.Size = new System.Drawing.Size(158, 23);
+            this.btnShowEmpties.TabIndex = 0;
+            this.btnShowEmpties.Text = "Show Empties";
+            this.btnShowEmpties.UseVisualStyleBackColor = true;
+            this.btnShowEmpties.Click += new System.EventHandler(this.btnShowEmpties_Click);
             // 
             // HomeInventory
             // 
@@ -249,6 +273,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(801, 533);
+            this.Controls.Add(this.gbxSorting);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.gbxDatabase);
             this.Controls.Add(this.gbxItemInfo);
@@ -263,6 +288,7 @@
             this.gbxItemInfo.PerformLayout();
             this.gbxDatabase.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.gbxSorting.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -288,6 +314,8 @@
         private System.Windows.Forms.Button btnExportPDF;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.GroupBox gbxSorting;
+        private System.Windows.Forms.Button btnShowEmpties;
     }
 }
 

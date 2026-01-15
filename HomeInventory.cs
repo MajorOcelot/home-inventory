@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.IO;
 
 namespace HomeInventory
 {
@@ -20,7 +21,7 @@ namespace HomeInventory
             LoadSQLiteData();
         }
 
-        #region Click Events
+        #region CRUD Click Events
         private void btnAdd_Click(object sender, EventArgs e)
         {
             AddItem();
@@ -40,9 +41,19 @@ namespace HomeInventory
         {
             DeleteItem();
         }
+        #endregion
 
+        #region Sorting Click Events
+        private void btnShowEmpties_Click(object sender, EventArgs e)
+        {
+            ShowEmpties();
+        }
+        #endregion
+
+        #region Export Click Events
         private void btnSaveShoppingList_Click(object sender, EventArgs e)
         {
+            // Exports text file
             ShoppingListExport();
         }
         #endregion
@@ -60,7 +71,6 @@ namespace HomeInventory
         private void LoadSQLiteData()
         {
             string connectionString = "Data Source=home_inventory.db;Version=3;";
-
             string sqlQuery = "SELECT * FROM HomeInventory";
 
             try
@@ -74,6 +84,7 @@ namespace HomeInventory
                         DataTable dataTable = new DataTable();
                         dataAdapter.Fill(dataTable);
                         DataView dataView = new DataView(dataTable);
+                        dgvHomeInventory.AutoResizeColumns();
                         dgvHomeInventory.DataSource = dataTable;
                     }
                 }
@@ -152,10 +163,10 @@ namespace HomeInventory
                 using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
                 {
                     databaseConnection.Open();
-                    using (SQLiteCommand command = new SQLiteCommand(sqlDelete, databaseConnection))
+                    using (SQLiteCommand deleteCommand = new SQLiteCommand(sqlDelete, databaseConnection))
                     {
-                        command.Parameters.AddWithValue("@ItemId", Convert.ToInt32(txtItemID.Text));
-                        command.ExecuteNonQuery();
+                        deleteCommand.Parameters.AddWithValue("@ItemId", Convert.ToInt32(txtItemID.Text));
+                        deleteCommand.ExecuteNonQuery();
                     }
                 }
                 LoadSQLiteData();
@@ -167,11 +178,11 @@ namespace HomeInventory
         }
         #endregion
 
-        #region Shopping List
-        private void ShoppingListExport()
+        #region Show Empties
+        private void ShowEmpties()
         {
             string connectionString = "Data Source=home_inventory.db;Version=3;";
-            string sqlZeroQuantity = "SELECT FROM HomeInventory WHERE Quantity = 0;";
+            string sqlZeroQuantity = "SELECT Item_Name FROM HomeInventory WHERE Quantity = 0;";
 
             try
             {
@@ -179,15 +190,48 @@ namespace HomeInventory
                 {
                     databaseConnection.Open();
 
-                    using (SQLiteCommand deleteCommand = new SQLiteCommand(sqlZeroQuantity, databaseConnection))
+                    using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(sqlZeroQuantity, connectionString))
                     {
-
+                        DataTable dataTable = new DataTable();
+                        dataAdapter.Fill(dataTable);
+                        DataView dataView = new DataView(dataTable);
+                        dgvHomeInventory.AutoResizeColumns();
+                        dgvHomeInventory.DataSource = dataTable;
                     }
                 }
             }
             catch
             {
+                MessageBox.Show("There was an error retrieving zero quantities from the database. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
 
+        #region Shopping List
+        private void ShoppingListExport()
+        {
+            try
+            {
+                using (TextWriter writer = new StreamWriter("ShoppingList.txt"))
+                {
+                    for (int i = 0; i < dgvHomeInventory.Rows.Count - 1; i++)
+                    {
+                        for (int j = 0; j < dgvHomeInventory.Columns.Count; j++)
+                        {
+                            writer.Write($"{dgvHomeInventory.Rows[i].Cells[j].Value.ToString()}");
+
+                            if (j != dgvHomeInventory.Columns.Count - 1)
+                            {
+                                writer.Write(", ");
+                            }
+                        }
+                        writer.WriteLine();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("There was an error exporting the shopping list from the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -198,7 +242,11 @@ namespace HomeInventory
             txtItemID.Clear();
             txtItemName.Clear();
             txtItemQuantity.Clear();
+
+            LoadSQLiteData();
         }
         #endregion
+
+
     }
 }
