@@ -228,6 +228,8 @@ namespace HomeInventory
                         writer.WriteLine();
                     }
                 }
+
+                MessageBox.Show("Shopping list has been saved!", "Shopping List", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {
@@ -243,6 +245,7 @@ namespace HomeInventory
             txtItemName.Clear();
             txtItemQuantity.Clear();
 
+            dgvHomeInventory.DataSource = null;
             LoadSQLiteData();
         }
         #endregion

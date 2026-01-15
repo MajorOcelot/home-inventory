@@ -63,7 +63,7 @@
             this.dgvHomeInventory.Location = new System.Drawing.Point(13, 12);
             this.dgvHomeInventory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvHomeInventory.Name = "dgvHomeInventory";
-            this.dgvHomeInventory.Size = new System.Drawing.Size(776, 301);
+            this.dgvHomeInventory.Size = new System.Drawing.Size(378, 301);
             this.dgvHomeInventory.TabIndex = 0;
             this.dgvHomeInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -192,9 +192,9 @@
             this.gbxDatabase.Controls.Add(this.btnJSONExport);
             this.gbxDatabase.Controls.Add(this.btnCSVExport);
             this.gbxDatabase.Controls.Add(this.btnSaveShoppingList);
-            this.gbxDatabase.Location = new System.Drawing.Point(397, 319);
+            this.gbxDatabase.Location = new System.Drawing.Point(398, 12);
             this.gbxDatabase.Name = "gbxDatabase";
-            this.gbxDatabase.Size = new System.Drawing.Size(200, 205);
+            this.gbxDatabase.Size = new System.Drawing.Size(200, 301);
             this.gbxDatabase.TabIndex = 4;
             this.gbxDatabase.TabStop = false;
             this.gbxDatabase.Text = "Export";
@@ -239,9 +239,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(603, 319);
+            this.pictureBox1.Location = new System.Drawing.Point(398, 319);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(186, 205);
+            this.pictureBox1.Size = new System.Drawing.Size(200, 205);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
@@ -272,7 +272,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(801, 533);
+            this.ClientSize = new System.Drawing.Size(611, 533);
             this.Controls.Add(this.gbxSorting);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.gbxDatabase);
