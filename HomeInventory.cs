@@ -61,9 +61,9 @@ namespace HomeInventory
         #region Data Cell Changed
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtItemID.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txtItemName.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtItemQuantity.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtItemID.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[0].Value.ToString(); // Figure out the dumbass exception that happens when user tries to sort by item ID
+            txtItemName.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[1].Value.ToString(); // Again
+            txtItemQuantity.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[2].Value.ToString(); // Again
         }
         #endregion
 
@@ -115,6 +115,8 @@ namespace HomeInventory
                         command.ExecuteNonQuery();
                     }
                 }
+                lblOutRowSuccess.Text = "Item Added!";
+                
                 LoadSQLiteData();
             }
             catch
