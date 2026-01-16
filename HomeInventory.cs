@@ -34,7 +34,7 @@ namespace HomeInventory
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            ResetFields();
+            ResetForm();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -69,6 +69,9 @@ namespace HomeInventory
             txtItemID.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtItemName.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtItemQuantity.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[2].Value.ToString();
+            dtpExpirationDate.Value = DateTime.Parse(dgvHomeInventory.Rows[e.RowIndex].Cells[3].Value.ToString());
+            cbxItemType.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[4].Value.ToString();
+            rtbNotes.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[5].Value.ToString();
         }
         #endregion
 
@@ -106,22 +109,30 @@ namespace HomeInventory
         {
             string connectionString = "Data Source=home_inventory.db;Version=3;";
 
-            string sqlInsert = "INSERT INTO HomeInventory (Item_Name, Quantity) VALUES (@ItemName, @Quantity)";
+            string sqlInsert = "INSERT INTO HomeInventory (Name, Quantity, Expiration, Type, Notes) " +
+                               "VALUES (@Name, @Quantity, @Expiration, @Type, @Notes)";
+
+            DateTime expirationDate = dtpExpirationDate.Value;
 
             try
             {
                 using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
                 {
                     databaseConnection.Open();
+
                     using (SQLiteCommand command = new SQLiteCommand(sqlInsert, databaseConnection))
                     {
-                        command.Parameters.AddWithValue("@ItemName", txtItemName.Text);
+                        command.Parameters.AddWithValue("@Name", txtItemName.Text);
                         command.Parameters.AddWithValue("@Quantity", Convert.ToInt32(txtItemQuantity.Text));
+                        command.Parameters.AddWithValue("@Expiration", expirationDate.ToString("d"));
+                        command.Parameters.AddWithValue("@Type", cbxItemType.SelectedItem.ToString());
+                        command.Parameters.AddWithValue("@Notes", rtbNotes.Text);
                         command.ExecuteNonQuery();
                     }
                 }
                 
                 LoadSQLiteData();
+                ClearFields();
             }
             catch
             {
@@ -134,7 +145,7 @@ namespace HomeInventory
         public void UpdateItem()
         {
             string connectionString = "Data Source=home_inventory.db;Version=3;";
-            string sqlUpdate = "UPDATE HomeInventory SET Item_Name = @ItemName, Quantity = @Quantity WHERE Item_ID = @ItemId";
+            string sqlUpdate = "UPDATE HomeInventory SET Name = @Name, Quantity = @Quantity WHERE ID = @ID";
             
             try
             {
@@ -144,13 +155,18 @@ namespace HomeInventory
                     
                     using (SQLiteCommand command = new SQLiteCommand(sqlUpdate, databaseConnection))
                     {
-                        command.Parameters.AddWithValue("@ItemId", Convert.ToInt32(txtItemID.Text));
-                        command.Parameters.AddWithValue("@ItemName", txtItemName.Text);
+                        command.Parameters.AddWithValue("@ID", txtItemID.Text);
+                        command.Parameters.AddWithValue("@Name", txtItemName.Text);
                         command.Parameters.AddWithValue("@Quantity", txtItemQuantity.Text);
+                        command.Parameters.AddWithValue("@Expiration", dtpExpirationDate.Value.ToString());
+                        command.Parameters.AddWithValue("@Type", cbxItemType.SelectedItem.ToString());
+                        command.Parameters.AddWithValue("@Notes", rtbNotes.Text);
                         command.ExecuteNonQuery();
                     }
                 }
+
                 LoadSQLiteData();
+                ClearFields();
             }
             catch
             {
@@ -163,7 +179,7 @@ namespace HomeInventory
         public void DeleteItem()
         {
             string connectionString = "Data Source=home_inventory.db;Version=3;";
-            string sqlDelete = "DELETE FROM HomeInventory WHERE Item_ID = @ItemId";
+            string sqlDelete = "DELETE FROM HomeInventory WHERE ID = @ID";
             try
             {
                 using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
@@ -171,11 +187,13 @@ namespace HomeInventory
                     databaseConnection.Open();
                     using (SQLiteCommand deleteCommand = new SQLiteCommand(sqlDelete, databaseConnection))
                     {
-                        deleteCommand.Parameters.AddWithValue("@ItemId", Convert.ToInt32(txtItemID.Text));
+                        deleteCommand.Parameters.AddWithValue("@ID", Convert.ToInt32(txtItemID.Text));
                         deleteCommand.ExecuteNonQuery();
                     }
                 }
+
                 LoadSQLiteData();
+                ClearFields();
             }
             catch
             {
@@ -188,7 +206,7 @@ namespace HomeInventory
         private void ShowEmpties()
         {
             string connectionString = "Data Source=home_inventory.db;Version=3;";
-            string sqlZeroQuantity = "SELECT Item_Name FROM HomeInventory WHERE Quantity = 0;";
+            string sqlZeroQuantity = "SELECT Name FROM HomeInventory WHERE Quantity = 0;";
 
             try
             {
@@ -250,12 +268,22 @@ namespace HomeInventory
         }
         #endregion
 
-        #region Reset Fields
-        private void ResetFields()
+        #region Clear Fields
+        private void ClearFields()
         {
-            txtItemID.Clear();
-            txtItemName.Clear();
-            txtItemQuantity.Clear();
+            txtItemID.Text = string.Empty;
+            txtItemName.Text = string.Empty;
+            txtItemQuantity.Text = string.Empty;
+            dtpExpirationDate.Value = DateTime.Now;
+            cbxItemType.Text = string.Empty;
+            rtbNotes.Text = string.Empty;
+        }
+        #endregion
+
+        #region Reset Form
+        private void ResetForm()
+        {
+            ClearFields();
 
             dgvHomeInventory.DataSource = null;
             LoadSQLiteData();

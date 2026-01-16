@@ -30,33 +30,33 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeInventory));
             this.dgvHomeInventory = new System.Windows.Forms.DataGridView();
-            this.lblQItemID = new System.Windows.Forms.Label();
-            this.txtItemID = new System.Windows.Forms.TextBox();
             this.gbxItemInfo = new System.Windows.Forms.GroupBox();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.rtbNotes = new System.Windows.Forms.RichTextBox();
+            this.lblQNotes = new System.Windows.Forms.Label();
+            this.cbxItemType = new System.Windows.Forms.ComboBox();
+            this.lblQItemType = new System.Windows.Forms.Label();
+            this.dtpExpirationDate = new System.Windows.Forms.DateTimePicker();
+            this.lblQExpire = new System.Windows.Forms.Label();
             this.txtItemQuantity = new System.Windows.Forms.TextBox();
             this.lblQItemQuantity = new System.Windows.Forms.Label();
             this.lblQItemName = new System.Windows.Forms.Label();
             this.txtItemName = new System.Windows.Forms.TextBox();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.gbxDatabase = new System.Windows.Forms.GroupBox();
+            this.rdoCSV = new System.Windows.Forms.RadioButton();
+            this.rdoJSON = new System.Windows.Forms.RadioButton();
+            this.rdoPDF = new System.Windows.Forms.RadioButton();
+            this.rdoText = new System.Windows.Forms.RadioButton();
             this.btnSaveShoppingList = new System.Windows.Forms.Button();
             this.gbxSorting = new System.Windows.Forms.GroupBox();
             this.btnShowEmpties = new System.Windows.Forms.Button();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
-            this.lblQExpire = new System.Windows.Forms.Label();
-            this.dtpExpirationDate = new System.Windows.Forms.DateTimePicker();
-            this.lblQItemType = new System.Windows.Forms.Label();
-            this.rdoText = new System.Windows.Forms.RadioButton();
-            this.rdoPDF = new System.Windows.Forms.RadioButton();
-            this.rdoJSON = new System.Windows.Forms.RadioButton();
-            this.rdoCSV = new System.Windows.Forms.RadioButton();
-            this.cbxItemType = new System.Windows.Forms.ComboBox();
-            this.lblQNotes = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.gbxItemActions = new System.Windows.Forms.GroupBox();
+            this.lblQItemID = new System.Windows.Forms.Label();
+            this.txtItemID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHomeInventory)).BeginInit();
             this.gbxItemInfo.SuspendLayout();
             this.gbxDatabase.SuspendLayout();
@@ -74,28 +74,9 @@
             this.dgvHomeInventory.TabIndex = 0;
             this.dgvHomeInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // lblQItemID
-            // 
-            this.lblQItemID.AutoSize = true;
-            this.lblQItemID.Location = new System.Drawing.Point(7, 23);
-            this.lblQItemID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblQItemID.Name = "lblQItemID";
-            this.lblQItemID.Size = new System.Drawing.Size(22, 15);
-            this.lblQItemID.TabIndex = 1;
-            this.lblQItemID.Text = "ID:";
-            // 
-            // txtItemID
-            // 
-            this.txtItemID.Enabled = false;
-            this.txtItemID.Location = new System.Drawing.Point(77, 20);
-            this.txtItemID.Name = "txtItemID";
-            this.txtItemID.ReadOnly = true;
-            this.txtItemID.Size = new System.Drawing.Size(56, 21);
-            this.txtItemID.TabIndex = 2;
-            // 
             // gbxItemInfo
             // 
-            this.gbxItemInfo.Controls.Add(this.richTextBox1);
+            this.gbxItemInfo.Controls.Add(this.rtbNotes);
             this.gbxItemInfo.Controls.Add(this.lblQNotes);
             this.gbxItemInfo.Controls.Add(this.cbxItemType);
             this.gbxItemInfo.Controls.Add(this.lblQItemType);
@@ -113,6 +94,94 @@
             this.gbxItemInfo.TabIndex = 3;
             this.gbxItemInfo.TabStop = false;
             this.gbxItemInfo.Text = "Item Information";
+            // 
+            // rtbNotes
+            // 
+            this.rtbNotes.Location = new System.Drawing.Point(77, 160);
+            this.rtbNotes.Name = "rtbNotes";
+            this.rtbNotes.Size = new System.Drawing.Size(135, 102);
+            this.rtbNotes.TabIndex = 19;
+            this.rtbNotes.Text = "";
+            // 
+            // lblQNotes
+            // 
+            this.lblQNotes.AutoSize = true;
+            this.lblQNotes.Location = new System.Drawing.Point(6, 160);
+            this.lblQNotes.Name = "lblQNotes";
+            this.lblQNotes.Size = new System.Drawing.Size(42, 15);
+            this.lblQNotes.TabIndex = 18;
+            this.lblQNotes.Text = "Notes:";
+            // 
+            // cbxItemType
+            // 
+            this.cbxItemType.FormattingEnabled = true;
+            this.cbxItemType.Items.AddRange(new object[] {
+            "Food",
+            "Cleaning",
+            "Household",
+            "Pets"});
+            this.cbxItemType.Location = new System.Drawing.Point(77, 130);
+            this.cbxItemType.Name = "cbxItemType";
+            this.cbxItemType.Size = new System.Drawing.Size(135, 23);
+            this.cbxItemType.TabIndex = 17;
+            // 
+            // lblQItemType
+            // 
+            this.lblQItemType.AutoSize = true;
+            this.lblQItemType.Location = new System.Drawing.Point(6, 133);
+            this.lblQItemType.Name = "lblQItemType";
+            this.lblQItemType.Size = new System.Drawing.Size(36, 15);
+            this.lblQItemType.TabIndex = 16;
+            this.lblQItemType.Text = "Type:";
+            // 
+            // dtpExpirationDate
+            // 
+            this.dtpExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpExpirationDate.Location = new System.Drawing.Point(77, 103);
+            this.dtpExpirationDate.Name = "dtpExpirationDate";
+            this.dtpExpirationDate.Size = new System.Drawing.Size(135, 21);
+            this.dtpExpirationDate.TabIndex = 15;
+            // 
+            // lblQExpire
+            // 
+            this.lblQExpire.AutoSize = true;
+            this.lblQExpire.Location = new System.Drawing.Point(6, 106);
+            this.lblQExpire.Name = "lblQExpire";
+            this.lblQExpire.Size = new System.Drawing.Size(65, 15);
+            this.lblQExpire.TabIndex = 13;
+            this.lblQExpire.Text = "Expiration:";
+            // 
+            // txtItemQuantity
+            // 
+            this.txtItemQuantity.Location = new System.Drawing.Point(77, 76);
+            this.txtItemQuantity.Name = "txtItemQuantity";
+            this.txtItemQuantity.Size = new System.Drawing.Size(56, 21);
+            this.txtItemQuantity.TabIndex = 6;
+            // 
+            // lblQItemQuantity
+            // 
+            this.lblQItemQuantity.AutoSize = true;
+            this.lblQItemQuantity.Location = new System.Drawing.Point(6, 79);
+            this.lblQItemQuantity.Name = "lblQItemQuantity";
+            this.lblQItemQuantity.Size = new System.Drawing.Size(54, 15);
+            this.lblQItemQuantity.TabIndex = 5;
+            this.lblQItemQuantity.Text = "Quantity:";
+            // 
+            // lblQItemName
+            // 
+            this.lblQItemName.AutoSize = true;
+            this.lblQItemName.Location = new System.Drawing.Point(6, 51);
+            this.lblQItemName.Name = "lblQItemName";
+            this.lblQItemName.Size = new System.Drawing.Size(44, 15);
+            this.lblQItemName.TabIndex = 4;
+            this.lblQItemName.Text = "Name:";
+            // 
+            // txtItemName
+            // 
+            this.txtItemName.Location = new System.Drawing.Point(77, 48);
+            this.txtItemName.Name = "txtItemName";
+            this.txtItemName.Size = new System.Drawing.Size(135, 21);
+            this.txtItemName.TabIndex = 3;
             // 
             // btnReset
             // 
@@ -154,38 +223,6 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // txtItemQuantity
-            // 
-            this.txtItemQuantity.Location = new System.Drawing.Point(77, 76);
-            this.txtItemQuantity.Name = "txtItemQuantity";
-            this.txtItemQuantity.Size = new System.Drawing.Size(56, 21);
-            this.txtItemQuantity.TabIndex = 6;
-            // 
-            // lblQItemQuantity
-            // 
-            this.lblQItemQuantity.AutoSize = true;
-            this.lblQItemQuantity.Location = new System.Drawing.Point(6, 79);
-            this.lblQItemQuantity.Name = "lblQItemQuantity";
-            this.lblQItemQuantity.Size = new System.Drawing.Size(54, 15);
-            this.lblQItemQuantity.TabIndex = 5;
-            this.lblQItemQuantity.Text = "Quantity:";
-            // 
-            // lblQItemName
-            // 
-            this.lblQItemName.AutoSize = true;
-            this.lblQItemName.Location = new System.Drawing.Point(6, 51);
-            this.lblQItemName.Name = "lblQItemName";
-            this.lblQItemName.Size = new System.Drawing.Size(44, 15);
-            this.lblQItemName.TabIndex = 4;
-            this.lblQItemName.Text = "Name:";
-            // 
-            // txtItemName
-            // 
-            this.txtItemName.Location = new System.Drawing.Point(77, 48);
-            this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(135, 21);
-            this.txtItemName.TabIndex = 3;
-            // 
             // gbxDatabase
             // 
             this.gbxDatabase.Controls.Add(this.rdoCSV);
@@ -199,6 +236,50 @@
             this.gbxDatabase.TabIndex = 4;
             this.gbxDatabase.TabStop = false;
             this.gbxDatabase.Text = "Export";
+            // 
+            // rdoCSV
+            // 
+            this.rdoCSV.AutoSize = true;
+            this.rdoCSV.Location = new System.Drawing.Point(60, 22);
+            this.rdoCSV.Name = "rdoCSV";
+            this.rdoCSV.Size = new System.Drawing.Size(48, 19);
+            this.rdoCSV.TabIndex = 7;
+            this.rdoCSV.TabStop = true;
+            this.rdoCSV.Text = "CSV";
+            this.rdoCSV.UseVisualStyleBackColor = true;
+            // 
+            // rdoJSON
+            // 
+            this.rdoJSON.AutoSize = true;
+            this.rdoJSON.Location = new System.Drawing.Point(114, 22);
+            this.rdoJSON.Name = "rdoJSON";
+            this.rdoJSON.Size = new System.Drawing.Size(57, 19);
+            this.rdoJSON.TabIndex = 6;
+            this.rdoJSON.TabStop = true;
+            this.rdoJSON.Text = "JSON";
+            this.rdoJSON.UseVisualStyleBackColor = true;
+            // 
+            // rdoPDF
+            // 
+            this.rdoPDF.AutoSize = true;
+            this.rdoPDF.Location = new System.Drawing.Point(6, 47);
+            this.rdoPDF.Name = "rdoPDF";
+            this.rdoPDF.Size = new System.Drawing.Size(49, 19);
+            this.rdoPDF.TabIndex = 5;
+            this.rdoPDF.TabStop = true;
+            this.rdoPDF.Text = "PDF";
+            this.rdoPDF.UseVisualStyleBackColor = true;
+            // 
+            // rdoText
+            // 
+            this.rdoText.AutoSize = true;
+            this.rdoText.Location = new System.Drawing.Point(6, 22);
+            this.rdoText.Name = "rdoText";
+            this.rdoText.Size = new System.Drawing.Size(48, 19);
+            this.rdoText.TabIndex = 4;
+            this.rdoText.TabStop = true;
+            this.rdoText.Text = "Text";
+            this.rdoText.UseVisualStyleBackColor = true;
             // 
             // btnSaveShoppingList
             // 
@@ -230,106 +311,6 @@
             this.btnShowEmpties.UseVisualStyleBackColor = true;
             this.btnShowEmpties.Click += new System.EventHandler(this.btnShowEmpties_Click);
             // 
-            // lblQExpire
-            // 
-            this.lblQExpire.AutoSize = true;
-            this.lblQExpire.Location = new System.Drawing.Point(6, 106);
-            this.lblQExpire.Name = "lblQExpire";
-            this.lblQExpire.Size = new System.Drawing.Size(65, 15);
-            this.lblQExpire.TabIndex = 13;
-            this.lblQExpire.Text = "Expiration:";
-            // 
-            // dtpExpirationDate
-            // 
-            this.dtpExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpExpirationDate.Location = new System.Drawing.Point(77, 103);
-            this.dtpExpirationDate.Name = "dtpExpirationDate";
-            this.dtpExpirationDate.Size = new System.Drawing.Size(135, 21);
-            this.dtpExpirationDate.TabIndex = 15;
-            // 
-            // lblQItemType
-            // 
-            this.lblQItemType.AutoSize = true;
-            this.lblQItemType.Location = new System.Drawing.Point(6, 133);
-            this.lblQItemType.Name = "lblQItemType";
-            this.lblQItemType.Size = new System.Drawing.Size(36, 15);
-            this.lblQItemType.TabIndex = 16;
-            this.lblQItemType.Text = "Type:";
-            // 
-            // rdoText
-            // 
-            this.rdoText.AutoSize = true;
-            this.rdoText.Location = new System.Drawing.Point(6, 22);
-            this.rdoText.Name = "rdoText";
-            this.rdoText.Size = new System.Drawing.Size(48, 19);
-            this.rdoText.TabIndex = 4;
-            this.rdoText.TabStop = true;
-            this.rdoText.Text = "Text";
-            this.rdoText.UseVisualStyleBackColor = true;
-            // 
-            // rdoPDF
-            // 
-            this.rdoPDF.AutoSize = true;
-            this.rdoPDF.Location = new System.Drawing.Point(6, 47);
-            this.rdoPDF.Name = "rdoPDF";
-            this.rdoPDF.Size = new System.Drawing.Size(49, 19);
-            this.rdoPDF.TabIndex = 5;
-            this.rdoPDF.TabStop = true;
-            this.rdoPDF.Text = "PDF";
-            this.rdoPDF.UseVisualStyleBackColor = true;
-            // 
-            // rdoJSON
-            // 
-            this.rdoJSON.AutoSize = true;
-            this.rdoJSON.Location = new System.Drawing.Point(114, 22);
-            this.rdoJSON.Name = "rdoJSON";
-            this.rdoJSON.Size = new System.Drawing.Size(57, 19);
-            this.rdoJSON.TabIndex = 6;
-            this.rdoJSON.TabStop = true;
-            this.rdoJSON.Text = "JSON";
-            this.rdoJSON.UseVisualStyleBackColor = true;
-            // 
-            // rdoCSV
-            // 
-            this.rdoCSV.AutoSize = true;
-            this.rdoCSV.Location = new System.Drawing.Point(60, 22);
-            this.rdoCSV.Name = "rdoCSV";
-            this.rdoCSV.Size = new System.Drawing.Size(48, 19);
-            this.rdoCSV.TabIndex = 7;
-            this.rdoCSV.TabStop = true;
-            this.rdoCSV.Text = "CSV";
-            this.rdoCSV.UseVisualStyleBackColor = true;
-            // 
-            // cbxItemType
-            // 
-            this.cbxItemType.FormattingEnabled = true;
-            this.cbxItemType.Items.AddRange(new object[] {
-            "Food",
-            "Cleaning",
-            "Household",
-            "Pets"});
-            this.cbxItemType.Location = new System.Drawing.Point(77, 130);
-            this.cbxItemType.Name = "cbxItemType";
-            this.cbxItemType.Size = new System.Drawing.Size(135, 23);
-            this.cbxItemType.TabIndex = 17;
-            // 
-            // lblQNotes
-            // 
-            this.lblQNotes.AutoSize = true;
-            this.lblQNotes.Location = new System.Drawing.Point(6, 160);
-            this.lblQNotes.Name = "lblQNotes";
-            this.lblQNotes.Size = new System.Drawing.Size(42, 15);
-            this.lblQNotes.TabIndex = 18;
-            this.lblQNotes.Text = "Notes:";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(77, 160);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(135, 102);
-            this.richTextBox1.TabIndex = 19;
-            this.richTextBox1.Text = "";
-            // 
             // gbxItemActions
             // 
             this.gbxItemActions.Controls.Add(this.btnDelete);
@@ -342,6 +323,25 @@
             this.gbxItemActions.TabIndex = 13;
             this.gbxItemActions.TabStop = false;
             this.gbxItemActions.Text = "Item Actions";
+            // 
+            // lblQItemID
+            // 
+            this.lblQItemID.AutoSize = true;
+            this.lblQItemID.Location = new System.Drawing.Point(7, 23);
+            this.lblQItemID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblQItemID.Name = "lblQItemID";
+            this.lblQItemID.Size = new System.Drawing.Size(22, 15);
+            this.lblQItemID.TabIndex = 1;
+            this.lblQItemID.Text = "ID:";
+            // 
+            // txtItemID
+            // 
+            this.txtItemID.Enabled = false;
+            this.txtItemID.Location = new System.Drawing.Point(77, 20);
+            this.txtItemID.Name = "txtItemID";
+            this.txtItemID.ReadOnly = true;
+            this.txtItemID.Size = new System.Drawing.Size(56, 21);
+            this.txtItemID.TabIndex = 2;
             // 
             // HomeInventory
             // 
@@ -374,8 +374,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvHomeInventory;
-        private System.Windows.Forms.Label lblQItemID;
-        private System.Windows.Forms.TextBox txtItemID;
         private System.Windows.Forms.GroupBox gbxItemInfo;
         private System.Windows.Forms.Label lblQItemName;
         private System.Windows.Forms.TextBox txtItemName;
@@ -398,9 +396,11 @@
         private System.Windows.Forms.RadioButton rdoPDF;
         private System.Windows.Forms.RadioButton rdoText;
         private System.Windows.Forms.ComboBox cbxItemType;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtbNotes;
         private System.Windows.Forms.Label lblQNotes;
         private System.Windows.Forms.GroupBox gbxItemActions;
+        private System.Windows.Forms.TextBox txtItemID;
+        private System.Windows.Forms.Label lblQItemID;
     }
 }
 
