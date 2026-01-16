@@ -217,26 +217,32 @@ namespace HomeInventory
         #region Shopping List
         private void ShoppingListExport()
         {
+            sfdSaveFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            sfdSaveFile.Filter = "Text Files (*.txt)|*.txt";
+
             try
             {
-                using (TextWriter writer = new StreamWriter("ShoppingList.txt"))
+                if (sfdSaveFile.ShowDialog() == DialogResult.OK)
                 {
-                    for (int i = 0; i < dgvHomeInventory.Rows.Count - 1; i++)
+                    using (TextWriter writer = new StreamWriter(sfdSaveFile.FileName))
                     {
-                        for (int j = 0; j < dgvHomeInventory.Columns.Count; j++)
+                        for (int i = 0; i < dgvHomeInventory.Rows.Count - 1; i++)
                         {
-                            writer.Write($"{dgvHomeInventory.Rows[i].Cells[j].Value.ToString()}");
-
-                            if (j != dgvHomeInventory.Columns.Count - 1)
+                            for (int j = 0; j < dgvHomeInventory.Columns.Count; j++)
                             {
-                                writer.Write(", ");
-                            }
-                        }
-                        writer.WriteLine();
-                    }
-                }
+                                writer.Write($"{dgvHomeInventory.Rows[i].Cells[j].Value.ToString()}");
 
-                MessageBox.Show("Shopping list has been saved!", "Shopping List", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                if (j != dgvHomeInventory.Columns.Count - 1)
+                                {
+                                    writer.Write(", ");
+                                }
+                            }
+                            writer.WriteLine();
+                        }
+                    }
+
+                    MessageBox.Show("Shopping list has been saved!", "Shopping List", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch
             {

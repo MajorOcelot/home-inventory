@@ -50,6 +50,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gbxSorting = new System.Windows.Forms.GroupBox();
             this.btnShowEmpties = new System.Windows.Forms.Button();
+            this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHomeInventory)).BeginInit();
             this.gbxItemInfo.SuspendLayout();
             this.gbxDatabase.SuspendLayout();
@@ -316,6 +317,7 @@
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.GroupBox gbxSorting;
         private System.Windows.Forms.Button btnShowEmpties;
+        private System.Windows.Forms.SaveFileDialog sfdSaveFile;
     }
 }
 
