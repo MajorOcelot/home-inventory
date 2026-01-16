@@ -120,7 +120,6 @@ namespace HomeInventory
                         command.ExecuteNonQuery();
                     }
                 }
-                lblOutRowSuccess.Text = "Item Added!";
                 
                 LoadSQLiteData();
             }
