@@ -107,6 +107,74 @@ namespace HomeInventory
         }
         #endregion
 
+        #region Open Database File
+        private void OpenDatabaseFile()
+        {
+            // Opens existing database file
+            ofdOpenFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            ofdOpenFile.Filter = "Database Files (*.db)|*.db";
+
+            try
+            {
+                if (ofdOpenFile.ShowDialog() == DialogResult.OK)
+                {
+                    // Gets selected file path
+                    string selectedFilePath = ofdOpenFile.FileName;
+                    string connectionString = $"Data Source={selectedFilePath};Version=3;";
+
+                    using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
+                    {
+                        databaseConnection.Open();
+
+                        using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter("SELECT * FROM HomeInventory", databaseConnection))
+                        {
+                            // Fill DataTable with data from selected database file
+                            DataTable dataTable = new DataTable();
+                            dataAdapter.Fill(dataTable);
+                            DataView dataView = new DataView(dataTable);
+                            dgvHomeInventory.AutoResizeColumns();
+                            dgvHomeInventory.DataSource = dataTable;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("There was an error opening the database file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region CreateSQLiteDB
+        private void CreateSQLiteDB()
+        {
+            string connectionString = "Data Source=home_inventory.db;Version=3;";
+            string sqlCreateTable = "CREATE TABLE IF NOT EXISTS HomeInventory (" +
+                                    "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                                    "Name TEXT NOT NULL," +
+                                    "Quantity INTEGER NOT NULL," +
+                                    "Expiration TEXT," +
+                                    "Type TEXT," +
+                                    "Notes TEXT)";
+            try
+            {
+                using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
+                {
+                    databaseConnection.Open();
+                    using (SQLiteCommand command = new SQLiteCommand(sqlCreateTable, databaseConnection))
+                    {
+                        // Creates table if it does not exist
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("There was an error creating the database file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
         #region Add Item
         public void AddItem()
         {

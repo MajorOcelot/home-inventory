@@ -41,6 +41,8 @@
             this.lblQItemQuantity = new System.Windows.Forms.Label();
             this.lblQItemName = new System.Windows.Forms.Label();
             this.txtItemName = new System.Windows.Forms.TextBox();
+            this.txtItemID = new System.Windows.Forms.TextBox();
+            this.lblQItemID = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -55,8 +57,7 @@
             this.btnShowEmpties = new System.Windows.Forms.Button();
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.gbxItemActions = new System.Windows.Forms.GroupBox();
-            this.lblQItemID = new System.Windows.Forms.Label();
-            this.txtItemID = new System.Windows.Forms.TextBox();
+            this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHomeInventory)).BeginInit();
             this.gbxItemInfo.SuspendLayout();
             this.gbxDatabase.SuspendLayout();
@@ -182,6 +183,25 @@
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(135, 21);
             this.txtItemName.TabIndex = 3;
+            // 
+            // txtItemID
+            // 
+            this.txtItemID.Enabled = false;
+            this.txtItemID.Location = new System.Drawing.Point(77, 20);
+            this.txtItemID.Name = "txtItemID";
+            this.txtItemID.ReadOnly = true;
+            this.txtItemID.Size = new System.Drawing.Size(56, 21);
+            this.txtItemID.TabIndex = 2;
+            // 
+            // lblQItemID
+            // 
+            this.lblQItemID.AutoSize = true;
+            this.lblQItemID.Location = new System.Drawing.Point(7, 23);
+            this.lblQItemID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblQItemID.Name = "lblQItemID";
+            this.lblQItemID.Size = new System.Drawing.Size(22, 15);
+            this.lblQItemID.TabIndex = 1;
+            this.lblQItemID.Text = "ID:";
             // 
             // btnReset
             // 
@@ -324,24 +344,9 @@
             this.gbxItemActions.TabStop = false;
             this.gbxItemActions.Text = "Item Actions";
             // 
-            // lblQItemID
+            // ofdOpenFile
             // 
-            this.lblQItemID.AutoSize = true;
-            this.lblQItemID.Location = new System.Drawing.Point(7, 23);
-            this.lblQItemID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblQItemID.Name = "lblQItemID";
-            this.lblQItemID.Size = new System.Drawing.Size(22, 15);
-            this.lblQItemID.TabIndex = 1;
-            this.lblQItemID.Text = "ID:";
-            // 
-            // txtItemID
-            // 
-            this.txtItemID.Enabled = false;
-            this.txtItemID.Location = new System.Drawing.Point(77, 20);
-            this.txtItemID.Name = "txtItemID";
-            this.txtItemID.ReadOnly = true;
-            this.txtItemID.Size = new System.Drawing.Size(56, 21);
-            this.txtItemID.TabIndex = 2;
+            this.ofdOpenFile.FileName = "openFileDialog1";
             // 
             // HomeInventory
             // 
@@ -401,6 +406,7 @@
         private System.Windows.Forms.GroupBox gbxItemActions;
         private System.Windows.Forms.TextBox txtItemID;
         private System.Windows.Forms.Label lblQItemID;
+        private System.Windows.Forms.OpenFileDialog ofdOpenFile;
     }
 }
 
