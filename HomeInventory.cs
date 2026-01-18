@@ -61,11 +61,13 @@ namespace HomeInventory
         #region Data Cell Changed
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Prevents error when clicking on header row
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
             {
-                return; // This statement returns if headers are clicked
+                return;
             }
 
+            // Populates text fields with selected row data
             txtItemID.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtItemName.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtItemQuantity.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -87,6 +89,7 @@ namespace HomeInventory
                 {
                     databaseConnection.Open();
 
+                    // Fill DataTable with data from database
                     using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(sqlQuery, databaseConnection))
                     {
                         DataTable dataTable = new DataTable();
@@ -122,6 +125,7 @@ namespace HomeInventory
 
                     using (SQLiteCommand command = new SQLiteCommand(sqlInsert, databaseConnection))
                     {
+                        // Inserts new item into database
                         command.Parameters.AddWithValue("@Name", txtItemName.Text);
                         command.Parameters.AddWithValue("@Quantity", Convert.ToInt32(txtItemQuantity.Text));
                         command.Parameters.AddWithValue("@Expiration", expirationDate.ToString("d"));
@@ -155,6 +159,7 @@ namespace HomeInventory
                     
                     using (SQLiteCommand command = new SQLiteCommand(sqlUpdate, databaseConnection))
                     {
+                        // Updates item based on ID
                         command.Parameters.AddWithValue("@ID", txtItemID.Text);
                         command.Parameters.AddWithValue("@Name", txtItemName.Text);
                         command.Parameters.AddWithValue("@Quantity", txtItemQuantity.Text);
@@ -185,8 +190,10 @@ namespace HomeInventory
                 using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
                 {
                     databaseConnection.Open();
+
                     using (SQLiteCommand deleteCommand = new SQLiteCommand(sqlDelete, databaseConnection))
                     {
+                        // Deletes item based on ID
                         deleteCommand.Parameters.AddWithValue("@ID", Convert.ToInt32(txtItemID.Text));
                         deleteCommand.ExecuteNonQuery();
                     }
@@ -216,6 +223,7 @@ namespace HomeInventory
 
                     using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(sqlZeroQuantity, connectionString))
                     {
+                        // Fill DataTable with zero quantity items from database
                         DataTable dataTable = new DataTable();
                         dataAdapter.Fill(dataTable);
                         DataView dataView = new DataView(dataTable);
@@ -243,17 +251,21 @@ namespace HomeInventory
                 {
                     using (TextWriter writer = new StreamWriter(sfdSaveFile.FileName))
                     {
+                        // Writes DataGridView content to text file
                         for (int i = 0; i < dgvHomeInventory.Rows.Count - 1; i++)
                         {
                             for (int j = 0; j < dgvHomeInventory.Columns.Count; j++)
                             {
+                                // Writes cell value
                                 writer.Write($"{dgvHomeInventory.Rows[i].Cells[j].Value.ToString()}");
 
+                                // Adds comma except for last column
                                 if (j != dgvHomeInventory.Columns.Count - 1)
                                 {
                                     writer.Write(", ");
                                 }
                             }
+
                             writer.WriteLine();
                         }
                     }
@@ -271,6 +283,7 @@ namespace HomeInventory
         #region Clear Fields
         private void ClearFields()
         {
+            // Clears all text fields
             txtItemID.Text = string.Empty;
             txtItemName.Text = string.Empty;
             txtItemQuantity.Text = string.Empty;
@@ -285,6 +298,7 @@ namespace HomeInventory
         {
             ClearFields();
 
+            // Resets DataGridView to show all data
             dgvHomeInventory.DataSource = null;
             LoadSQLiteData();
         }
