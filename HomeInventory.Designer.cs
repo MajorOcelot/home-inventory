@@ -58,11 +58,14 @@
             this.sfdSaveFile = new System.Windows.Forms.SaveFileDialog();
             this.gbxItemActions = new System.Windows.Forms.GroupBox();
             this.ofdOpenFile = new System.Windows.Forms.OpenFileDialog();
+            this.btnLoadDB = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHomeInventory)).BeginInit();
             this.gbxItemInfo.SuspendLayout();
             this.gbxDatabase.SuspendLayout();
             this.gbxSorting.SuspendLayout();
             this.gbxItemActions.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvHomeInventory
@@ -71,7 +74,7 @@
             this.dgvHomeInventory.Location = new System.Drawing.Point(13, 12);
             this.dgvHomeInventory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvHomeInventory.Name = "dgvHomeInventory";
-            this.dgvHomeInventory.Size = new System.Drawing.Size(600, 301);
+            this.dgvHomeInventory.Size = new System.Drawing.Size(609, 301);
             this.dgvHomeInventory.TabIndex = 0;
             this.dgvHomeInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -89,7 +92,7 @@
             this.gbxItemInfo.Controls.Add(this.txtItemName);
             this.gbxItemInfo.Controls.Add(this.txtItemID);
             this.gbxItemInfo.Controls.Add(this.lblQItemID);
-            this.gbxItemInfo.Location = new System.Drawing.Point(13, 319);
+            this.gbxItemInfo.Location = new System.Drawing.Point(108, 319);
             this.gbxItemInfo.Name = "gbxItemInfo";
             this.gbxItemInfo.Size = new System.Drawing.Size(218, 273);
             this.gbxItemInfo.TabIndex = 3;
@@ -250,9 +253,9 @@
             this.gbxDatabase.Controls.Add(this.rdoPDF);
             this.gbxDatabase.Controls.Add(this.rdoText);
             this.gbxDatabase.Controls.Add(this.btnSaveShoppingList);
-            this.gbxDatabase.Location = new System.Drawing.Point(413, 486);
+            this.gbxDatabase.Location = new System.Drawing.Point(443, 486);
             this.gbxDatabase.Name = "gbxDatabase";
-            this.gbxDatabase.Size = new System.Drawing.Size(200, 106);
+            this.gbxDatabase.Size = new System.Drawing.Size(179, 106);
             this.gbxDatabase.TabIndex = 4;
             this.gbxDatabase.TabStop = false;
             this.gbxDatabase.Text = "Export";
@@ -305,7 +308,7 @@
             // 
             this.btnSaveShoppingList.Location = new System.Drawing.Point(6, 72);
             this.btnSaveShoppingList.Name = "btnSaveShoppingList";
-            this.btnSaveShoppingList.Size = new System.Drawing.Size(188, 23);
+            this.btnSaveShoppingList.Size = new System.Drawing.Size(165, 23);
             this.btnSaveShoppingList.TabIndex = 0;
             this.btnSaveShoppingList.Text = "Save Shopping List";
             this.btnSaveShoppingList.UseVisualStyleBackColor = true;
@@ -314,9 +317,9 @@
             // gbxSorting
             // 
             this.gbxSorting.Controls.Add(this.btnShowEmpties);
-            this.gbxSorting.Location = new System.Drawing.Point(413, 319);
+            this.gbxSorting.Location = new System.Drawing.Point(443, 319);
             this.gbxSorting.Name = "gbxSorting";
-            this.gbxSorting.Size = new System.Drawing.Size(200, 161);
+            this.gbxSorting.Size = new System.Drawing.Size(179, 161);
             this.gbxSorting.TabIndex = 6;
             this.gbxSorting.TabStop = false;
             this.gbxSorting.Text = "Sorting";
@@ -337,9 +340,9 @@
             this.gbxItemActions.Controls.Add(this.btnUpdate);
             this.gbxItemActions.Controls.Add(this.btnAdd);
             this.gbxItemActions.Controls.Add(this.btnReset);
-            this.gbxItemActions.Location = new System.Drawing.Point(237, 319);
+            this.gbxItemActions.Location = new System.Drawing.Point(332, 319);
             this.gbxItemActions.Name = "gbxItemActions";
-            this.gbxItemActions.Size = new System.Drawing.Size(170, 273);
+            this.gbxItemActions.Size = new System.Drawing.Size(105, 273);
             this.gbxItemActions.TabIndex = 13;
             this.gbxItemActions.TabStop = false;
             this.gbxItemActions.Text = "Item Actions";
@@ -348,13 +351,33 @@
             // 
             this.ofdOpenFile.FileName = "openFileDialog1";
             // 
+            // btnLoadDB
+            // 
+            this.btnLoadDB.Location = new System.Drawing.Point(6, 20);
+            this.btnLoadDB.Name = "btnLoadDB";
+            this.btnLoadDB.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadDB.TabIndex = 14;
+            this.btnLoadDB.Text = "Load";
+            this.btnLoadDB.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnLoadDB);
+            this.groupBox1.Location = new System.Drawing.Point(13, 320);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(89, 272);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Database";
+            // 
             // HomeInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(625, 604);
+            this.ClientSize = new System.Drawing.Size(634, 604);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbxItemActions);
             this.Controls.Add(this.gbxSorting);
             this.Controls.Add(this.gbxDatabase);
@@ -372,6 +395,7 @@
             this.gbxDatabase.PerformLayout();
             this.gbxSorting.ResumeLayout(false);
             this.gbxItemActions.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -407,6 +431,8 @@
         private System.Windows.Forms.TextBox txtItemID;
         private System.Windows.Forms.Label lblQItemID;
         private System.Windows.Forms.OpenFileDialog ofdOpenFile;
+        private System.Windows.Forms.Button btnLoadDB;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
