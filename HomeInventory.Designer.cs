@@ -71,7 +71,7 @@
             this.dgvHomeInventory.Location = new System.Drawing.Point(13, 12);
             this.dgvHomeInventory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvHomeInventory.Name = "dgvHomeInventory";
-            this.dgvHomeInventory.Size = new System.Drawing.Size(609, 301);
+            this.dgvHomeInventory.Size = new System.Drawing.Size(514, 301);
             this.dgvHomeInventory.TabIndex = 0;
             this.dgvHomeInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -89,7 +89,7 @@
             this.gbxItemInfo.Controls.Add(this.txtItemName);
             this.gbxItemInfo.Controls.Add(this.txtItemID);
             this.gbxItemInfo.Controls.Add(this.lblQItemID);
-            this.gbxItemInfo.Location = new System.Drawing.Point(108, 319);
+            this.gbxItemInfo.Location = new System.Drawing.Point(13, 319);
             this.gbxItemInfo.Name = "gbxItemInfo";
             this.gbxItemInfo.Size = new System.Drawing.Size(218, 273);
             this.gbxItemInfo.TabIndex = 3;
@@ -250,7 +250,7 @@
             this.gbxDatabase.Controls.Add(this.rdoPDF);
             this.gbxDatabase.Controls.Add(this.rdoText);
             this.gbxDatabase.Controls.Add(this.btnSaveShoppingList);
-            this.gbxDatabase.Location = new System.Drawing.Point(443, 486);
+            this.gbxDatabase.Location = new System.Drawing.Point(348, 486);
             this.gbxDatabase.Name = "gbxDatabase";
             this.gbxDatabase.Size = new System.Drawing.Size(179, 106);
             this.gbxDatabase.TabIndex = 4;
@@ -314,7 +314,7 @@
             // gbxSorting
             // 
             this.gbxSorting.Controls.Add(this.btnShowEmpties);
-            this.gbxSorting.Location = new System.Drawing.Point(443, 319);
+            this.gbxSorting.Location = new System.Drawing.Point(348, 319);
             this.gbxSorting.Name = "gbxSorting";
             this.gbxSorting.Size = new System.Drawing.Size(179, 161);
             this.gbxSorting.TabIndex = 6;
@@ -337,7 +337,7 @@
             this.gbxItemActions.Controls.Add(this.btnUpdate);
             this.gbxItemActions.Controls.Add(this.btnAdd);
             this.gbxItemActions.Controls.Add(this.btnReset);
-            this.gbxItemActions.Location = new System.Drawing.Point(332, 319);
+            this.gbxItemActions.Location = new System.Drawing.Point(237, 319);
             this.gbxItemActions.Name = "gbxItemActions";
             this.gbxItemActions.Size = new System.Drawing.Size(105, 273);
             this.gbxItemActions.TabIndex = 13;
@@ -354,7 +354,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(634, 604);
+            this.ClientSize = new System.Drawing.Size(541, 604);
             this.Controls.Add(this.gbxItemActions);
             this.Controls.Add(this.gbxSorting);
             this.Controls.Add(this.gbxDatabase);
