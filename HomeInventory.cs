@@ -80,38 +80,29 @@ namespace HomeInventory
         #region Load SQLite Data
         private void LoadSQLiteData()
         {
-            string connectionString = "Data Source=Database/home_inventory.db;Version=3;";
+            string connectionString = "Data Source=home_inventory.db;Version=3;";
             string sqlQuery = "SELECT * FROM HomeInventory";
 
-            if (Directory.Exists("Database"))
+            try
             {
-                try
+                using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
                 {
-                    using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
-                    {
-                        databaseConnection.Open();
+                    databaseConnection.Open();
 
-                        // Fill DataTable with data from database
-                        using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(sqlQuery, databaseConnection))
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataAdapter.Fill(dataTable);
-                            DataView dataView = new DataView(dataTable);
-                            dgvHomeInventory.AutoResizeColumns();
-                            dgvHomeInventory.DataSource = dataTable;
-                        }
+                    // Fill DataTable with data from database
+                    using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(sqlQuery, databaseConnection))
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataAdapter.Fill(dataTable);
+                        DataView dataView = new DataView(dataTable);
+                        dgvHomeInventory.AutoResizeColumns();
+                        dgvHomeInventory.DataSource = dataTable;
                     }
                 }
-                catch
-                {
-                    MessageBox.Show("There was an error loading the database file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
-            else
+            catch
             {
-                // Creates database file and table if it does not exist
-                Directory.CreateDirectory("Database");
-                CreateSQLiteDB();
+                MessageBox.Show("There was an error loading the database file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
