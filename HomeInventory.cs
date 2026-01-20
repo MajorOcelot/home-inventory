@@ -107,42 +107,6 @@ namespace HomeInventory
         }
         #endregion
 
-        #region CreateSQLiteDB
-        private void CreateSQLiteDB()
-        {
-            string connectionString = "Data Source=Database/home_inventory.db;Version=3;";
-            string sqlCreateTable = "CREATE TABLE IF NOT EXISTS HomeInventory (" +
-                                    "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                    "Name TEXT NOT NULL," +
-                                    "Quantity INTEGER NOT NULL," +
-                                    "Expiration TEXT," +
-                                    "Type TEXT," +
-                                    "Notes TEXT)";
-
-            try
-            {
-                using (SQLiteConnection databaseConnection = new SQLiteConnection(connectionString))
-                {
-                    databaseConnection.Open();
-
-                    using (SQLiteCommand command = new SQLiteCommand(sqlCreateTable, databaseConnection))
-                    {
-                        // Creates table if it does not exist
-                        command.ExecuteNonQuery();
-
-                        
-                    }
-
-                    SQLiteConnection.CreateFile(connectionString);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("There was an error creating the database file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        #endregion
-
         #region Add Item
         public void AddItem()
         {
