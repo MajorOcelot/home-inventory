@@ -71,9 +71,8 @@ namespace HomeInventory
             txtItemID.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtItemName.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtItemQuantity.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[2].Value.ToString();
-            dtpExpirationDate.Value = DateTime.Parse(dgvHomeInventory.Rows[e.RowIndex].Cells[3].Value.ToString());
-            cbxItemType.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[4].Value.ToString();
-            rtbNotes.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[5].Value.ToString();
+            cbxItemType.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[3].Value.ToString();
+            rtbNotes.Text = dgvHomeInventory.Rows[e.RowIndex].Cells[4].Value.ToString();
         }
         #endregion
 
@@ -112,10 +111,8 @@ namespace HomeInventory
         {
             string connectionString = "Data Source=home_inventory.db;Version=3;";
 
-            string sqlInsert = "INSERT INTO HomeInventory (Name, Quantity, Expiration, Type, Notes) " +
-                               "VALUES (@Name, @Quantity, @Expiration, @Type, @Notes)";
-
-            DateTime expirationDate = dtpExpirationDate.Value;
+            string sqlInsert = "INSERT INTO HomeInventory (Name, Quantity, Type, Notes) " +
+                               "VALUES (@Name, @Quantity, @Type, @Notes)";
 
             try
             {
@@ -128,7 +125,6 @@ namespace HomeInventory
                         // Inserts new item into database
                         command.Parameters.AddWithValue("@Name", txtItemName.Text);
                         command.Parameters.AddWithValue("@Quantity", Convert.ToInt32(txtItemQuantity.Text));
-                        command.Parameters.AddWithValue("@Expiration", expirationDate.ToString("d"));
                         command.Parameters.AddWithValue("@Type", cbxItemType.SelectedItem.ToString());
                         command.Parameters.AddWithValue("@Notes", rtbNotes.Text);
                         command.ExecuteNonQuery();
@@ -163,7 +159,6 @@ namespace HomeInventory
                         command.Parameters.AddWithValue("@ID", txtItemID.Text);
                         command.Parameters.AddWithValue("@Name", txtItemName.Text);
                         command.Parameters.AddWithValue("@Quantity", txtItemQuantity.Text);
-                        command.Parameters.AddWithValue("@Expiration", dtpExpirationDate.Value.ToString());
                         command.Parameters.AddWithValue("@Type", cbxItemType.SelectedItem.ToString());
                         command.Parameters.AddWithValue("@Notes", rtbNotes.Text);
                         command.ExecuteNonQuery();
@@ -287,7 +282,6 @@ namespace HomeInventory
             txtItemID.Text = string.Empty;
             txtItemName.Text = string.Empty;
             txtItemQuantity.Text = string.Empty;
-            dtpExpirationDate.Value = DateTime.Now;
             cbxItemType.Text = string.Empty;
             rtbNotes.Text = string.Empty;
         }
